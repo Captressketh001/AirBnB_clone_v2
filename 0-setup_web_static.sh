@@ -3,7 +3,7 @@
 
 # install nginx if not previosul installed
 if [ ! -x /usr/sbin/nginx ]; then
-	sudo apt-get update -y -qq &\
+	sudo apt-get update -y -qq && \
 		sudo apt-get install -y nginx
 fi
 
@@ -18,6 +18,9 @@ sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 # Give ownership
 sudo chown -R ubuntu:ubuntu /data/
+
+# copy
+sudo cp /etc/nginx/sites-enabled/default nginx-sites-enabled_default.backup
 
 # Update the Nginx configuration
 sudo sed -i '37i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t}\n' /etc/nginx/sites-available/default
