@@ -8,13 +8,14 @@ import os
 
 env.hosts = ['34.232.77.172', '54.89.58.221']
 
+
 def do_deploy(archive_path):
     """
     Distributing an achive on the web server
     """
 
     if not os.path.exists(archive_path):
-        return False;
+        return False
 
     try:
         put(archive_path, "/tmp/")
@@ -23,21 +24,21 @@ def do_deploy(archive_path):
 
         run('mkdir -p /data/web_static/releases/{}'.format(archive_name))
         run('tar -xzf /tmp/{}.tgz -C /data/web_static/releases/{}/'
-                .format(archive_name, archive_name))
+            .format(archive_name, archive_name))
 
         run('rm -rf /tmp/{}.tgz'.format(archive_name))
 
         run(('mv /data/web_static/releases/{}/web_static/* ' +
-                '/data/web_static/releases/{}/')
-                .format(archive_name, archive_name))
+            '/data/web_static/releases/{}/')
+            .format(archive_name, archive_name))
 
         run('rm -rf /data/web_static/releases/{}/web_static'
-                .format(archive_name))
+            .format(archive_name))
 
         run('rm -rf /data/web_static/current')
 
-        run (('ln -s /data/web_static/releases/{}' +
-                ' /data/web_static/current').format(archive_name))
+        run(('ln -s /data/web_static/releases/{}' +
+            ' /data/web_static/current').format(archive_name))
 
         return True
     except Exception:
