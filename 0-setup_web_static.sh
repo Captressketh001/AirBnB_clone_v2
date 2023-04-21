@@ -24,3 +24,4 @@ sudo sed -i '37i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/
 
 # Restart nginx
 sudo service nginx restart
+echo -e "Completed without error"
