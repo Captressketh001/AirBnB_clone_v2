@@ -20,7 +20,7 @@ def all_states(state_id=None):
     else:
         states = storage.all('State').values()
     """Return list of states"""
-    return render_template('10-hbnb_filters.html', filter_states=states, id=state_id)
+    return render_template('9-states.html', filter_states=states, id=state_id)
 
 
 
