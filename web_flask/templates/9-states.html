@@ -22,7 +22,8 @@
     <UL>
         {% for city in filter_states.cities | sort(attribute='name') %}
         <LI>{{city.id|e}}: <B>{{city.name|e}}</B>LI>
-            {% endfor %}
+        {% endfor %}
     </UL>
+    {% endif %}
 </body>
 </html>
