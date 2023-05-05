@@ -7,17 +7,22 @@
     <title>Filter States</title>
 </head>
 <body>
+    {% if state_id is none %}
     <H1>States</H1>
     <UL>
         {% for state in filter_states | sort(attribute='name') %}
-        <LI>{{state.id|e}}: <B>{{state.name|e}}</B>
-        <UL>
-            {% for city in filter_states.cities | sort(attribute='name') %}
-            <LI>{{city.id|e}}: <B>{{city.name|e}}</B>LI>
-                {% endfor %}
-        </UL>
-        </LI>
+        <LI>{{state.id|e}}: <B>{{state.name|e}}</B></LI>
         {% endfor %}
+    </UL>
+    {% elif filter_states is none %}
+    <H1>Not found!</H1>
+    {% else %}
+    <H1>State: {filter_states.name}</H1>
+    <H3>Cities:</H3>
+    <UL>
+        {% for city in filter_states.cities | sort(attribute='name') %}
+        <LI>{{city.id|e}}: <B>{{city.name|e}}</B>LI>
+            {% endfor %}
     </UL>
 </body>
 </html>

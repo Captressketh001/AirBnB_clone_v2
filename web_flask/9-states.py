@@ -7,17 +7,27 @@ app = Flask(__name__)
 
 
 @app.route("/states", strict_slashes=False)
-def all_states():
-    states = storage.all('State').values()
-    """Return list of states"""
-    return render_template('10-hbnb_filters.html', states=states)
-
-
 @app.route("/states/<id>", strict_slashes=False)
-def filter_states(id):
-    states = storage.all('State').values()
-    state = states.query.get_or_404(id)
-    return render_template('10-hbnb_filters.html', filter_states=state)
+def all_states(state_id=None):
+
+    states = storage.all('State')
+    if state_id:
+        i = "{}.{}".format('State', state_id)
+        if i in states:
+            states = states[i]
+        else:
+            states = None
+    else:
+        states = storage.all('States').values()
+    """Return list of states"""
+    return render_template('10-hbnb_filters.html', filter_states=states, id=state_id)
+
+
+
+# def filter_states(id):
+#     states = storage.all('State').values()
+#     state = states.query.get_or_404(id)
+#     return render_template('10-hbnb_filters.html', filter_states=state)
 
 @app.teardown_appcontext
 def teardown(self):
