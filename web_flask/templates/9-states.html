@@ -7,7 +7,7 @@
     <title>Filter States</title>
 </head>
 <body>
-    {% if state_id is none %}
+    {% if id is none %}
     <H1>States</H1>
     <UL>
         {% for state in filter_states | sort(attribute='name') %}

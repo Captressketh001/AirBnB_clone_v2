@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route("/states", strict_slashes=False)
 @app.route("/states/<state_id>", strict_slashes=False)
 def all_states(state_id=None):
-
+    """ All states"""
     states = storage.all('State')
     if state_id:
         i = "{}.{}".format('State', state_id)
@@ -21,7 +21,6 @@ def all_states(state_id=None):
         states = storage.all('State').values()
     """Return list of states"""
     return render_template('9-states.html', filter_states=states, id=state_id)
-
 
 
 # def filter_states(id):
