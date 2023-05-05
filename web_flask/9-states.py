@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 
 @app.route("/states", strict_slashes=False)
-@app.route("/states/<id>", strict_slashes=False)
+@app.route("/states/<state_id>", strict_slashes=False)
 def all_states(state_id=None):
 
     states = storage.all('State')
